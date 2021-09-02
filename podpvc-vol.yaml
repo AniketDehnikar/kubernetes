@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: podpvc
+  namespace: trainingkube
+  labels:
+    name: testing
+spec:
+  containers:
+  - name: testing
+    image: bitbull/webserver
+    ports:
+    - containerPort: 80
+    volumeMounts:
+    - name: t-pvcvol
+      mountPath: "/etc/property"
+
+    env:
+    - name: config_maps
+      valueFrom:
+        configMapKeyRef:
+          name: configmaped
+          key: game.property
+    
+    volumeMounts:
+    - name: config-vol
+      mountPath: "/etc/property"
+      readOnly: true
+
+  volumes:
+  - name: config-vol
+    configMap:
+      name: configmaped
+  - name: pvc-volume
+    persistentVolumeClaim:
+      claimName: task-pvc-volume
+
+

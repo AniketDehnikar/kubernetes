@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: configmaped
+  namespace: trainingkube
+data:
+  name: "game"
+  game.property: |
+    FRY-CRY
+    PUBG
+    GTA-5
+  Description: "this file is used for my fev game"

@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pod-taint
+  namespace: trainingkube
+  labels:
+    name: testing
+spec:
+  containers:
+  - name: testing
+    image: jenkins:2.60.3
+  tolerations:              # effect can be NoSchedule or NoExectute 
+  - key: "fname"
+    operator: "Equal"
+    value: "lname"
+    effect: "NoSchedule"
